@@ -33,51 +33,52 @@ namespace grid
                     new ColumnDefinition{Width=new GridLength(1,GridUnitType.Star)},
                     new ColumnDefinition{Width=new GridLength(1,GridUnitType.Star)}
                 }*/
+
             };
             for (int i = 0; i < 3; i++)
             {
-                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             };
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    //box = new BoxView { Color = Color.Beige };
-                    Image img = new Image { Source = ImageSource.FromFile("cross.png")};
+                    box = new BoxView { Color = Color.White };
                     grid.Children.Add(box, i, j);
                     var tap = new TapGestureRecognizer();
-                    //tap.Tapped += Tap_Tapped;
-                    img.GestureRecognizers.Add(tap);
-                    tap.Tapped += async (object sender, EventArgs e) =>
+                    tap.Tapped += Tap_Tapped;
+                    box.GestureRecognizers.Add(tap);
+
+                    
+                    /*tap.Tapped += async (object sender, EventArgs e) =>
                     {
-                        //BoxView box = sender as BoxView;
-                        //if (box.Color == new Color(0, 0, 0))
-                        //{
-                        //  box.Color = Color.Red;
-                        //}
-                        //else
-                        //{
-                        //  box.Color = new Color(0, 0, 0);
-                        //}
+                        BoxView box = sender as BoxView;
+                        if (box.Color == new Color(0, 0, 0))
+                        {
+                          box.Color = Color.Red;
+                        }
+                        else
+                        {
+                          box.Color = new Color(0, 0, 0);
+                        }
                         Image img1 = sender as Image;
-                        if (img1.Source == "cross") 
+                        if (img1.Source == "") 
                         {
                             img1.Source = "cross";
                         }
                         else
                         {
-                            img1.Source = "O";
+                           img1.Source = "O";
                         }
-                    };
+                    };*/
                 }
             }
             Content = grid;
         }
-        //int tapValue = 0;
+        int tapValue = 0;
 
-
-        /*private void Tap_Tapped(object sender, EventArgs e)
+        private void Tap_Tapped(object sender, EventArgs e)
         {
             tapValue++;
             BoxView box = sender as BoxView;
@@ -87,8 +88,8 @@ namespace grid
             }
             else
             {
-                box.Color = Color.Beige;
+                box.Color = Color.Red;
             }
-        }*/
+        }
     }
 }
